@@ -1,0 +1,101 @@
+graphql:
+ servlet:
+   mapping: /graphql
+   tracing-enabled: false
+   enabled: true
+   subscriptions:
+     websocket:
+      path: /api/v1/graphql/subscriptions
+     apollo:
+      keep-alive-interval-seconds: 15
+   actuator-metrics: true
+   corsEnabled: true
+   # if you want to @ExceptionHandler annotation for custom GraphQLErrors
+   exception-handlers-enabled: true
+   async-mode-enabled: true
+   contextSetting: PER_REQUEST_WITH_INSTRUMENTATION
+
+graphiql:
+  mapping: /graphiql
+  endpoint:
+    graphql: /graphql
+    subscriptions: /subscriptions
+  subscriptions:
+    timeout: 30
+    reconnect: false
+  static:
+    basePath: /
+  enabled: true
+  pageTitle: GraphiQL
+  cdn:
+    enabled: false
+    version: 0.13.0
+  props:
+#    resources:
+#      query: query.graphql
+#      defaultQuery: defaultQuery.graphql
+#      variables: variables.graphql
+    variables:
+      editorTheme: "solarized light"
+##  headers:
+##    Authorization: "Bearer <your-token>"
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.cs.grapql: DEBUG
+    root: ERROR
+
+security:
+  basic:
+    enabled: false
+  sessions: if-required
+management:
+  security:
+    enabled: false
+  health:
+    defaults:
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      enabled: true
+      showDetails: always
+    info:
+      enabled: true
+    auditevents:
+      enabled: true
+    beans:
+      enabled: true
+    conditions:
+      enabled: true
+    configprops:
+      enabled: true
+    env:
+      enabled: true
+    flyway:
+      enabled: true
+    httptrace:
+      enabled: true
+    loggers:
+      enabled: true
+    liquibase:
+      enabled: true
+    metrics:
+      enabled: true
+    mappings:
+      enabled: true
+    scheduledtasks:
+      enabled: true
+    sessions:
+      enabled: true
+    shutdown:
+      enabled: true
+    threaddump:
+      enabled: true

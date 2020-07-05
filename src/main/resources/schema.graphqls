@@ -1,0 +1,21 @@
+type Query {
+    allPosts : [Post]
+    allProducers: [Producer]
+}
+
+type Post {
+    id: String!
+    title: String!
+    category: String
+    producer: Producer
+}
+
+type Producer {
+    id: String!
+    name: String!
+    posts: [Post!]
+}
+
+schema {
+    query: Query
+}
